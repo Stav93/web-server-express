@@ -16,9 +16,10 @@ const publicDirectoryPath = path.join(__dirname, '../public')
 
 // שמים באקספרס את החבילה שהורדנו
 app.set('view engine', 'hbs')
-app.set('views', path.join(__dirname, '../views'));
+app.set('views', path.join(__dirname, '../public/views'));
 // שולחים עם רנדר את קובץ האינדקס שבתיקייה ויוז
 app.get('', (req, res) => {
+  // אקספרס מרנדרת את הקובץ לhtml
   res.render('index')
   })
 
