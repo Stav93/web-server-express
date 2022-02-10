@@ -1,17 +1,19 @@
 const path = require('path')
 const express = require('express')
-//אקספרס היא פונקציה ואנחנו נקרא לה כדי ליצור אפליקציה חדשה
+const hbs = require('hbs')
 
 // המיקום של הקובץ הנוכחי
 console.log(__dirname);
 // מעבר לקובץ או תיקייה אחרת - פה לתיקיית פבליק
 console.log(path.join(__dirname,"../public"))
 
+//אקספרס היא פונקציה ואנחנו נקרא לה כדי ליצור אפליקציה חדשה
 const app = express();
+
 //define path for Express config
 //המיקום ממנו נרצה לקבל את הדברים הסטטים, שלא משתנים
 const publicDirectoryPath = path.join(__dirname, '../public');
-const viewsPath = path.join(__dirname, '../public/views');
+const viewsPath = path.join(__dirname, '../public/templates');
 
 // express.static() -- נותן את הפאט
 // Setup static directory to serve
