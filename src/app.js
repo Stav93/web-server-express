@@ -8,15 +8,20 @@ console.log(__dirname);
 console.log(path.join(__dirname,"../public"))
 
 const app = express();
+//define path for Express config
 //המיקום ממנו נרצה לקבל את הדברים הסטטים, שלא משתנים
-const publicDirectoryPath = path.join(__dirname, '../public')
+const publicDirectoryPath = path.join(__dirname, '../public');
+const viewsPath = path.join(__dirname, '../public/views');
 
 // express.static() -- נותן את הפאט
-// app.use(express.static(publicDirectoryPath))
+// Setup static directory to serve
+app.use(express.static(publicDirectoryPath))
 
+// Setup handlebars engine and views location
 // שמים באקספרס את החבילה שהורדנו
 app.set('view engine', 'hbs')
-app.set('views', path.join(__dirname, '../public/views'));
+app.set('views', viewsPath);
+
 // שולחים עם רנדר את קובץ האינדקס שבתיקייה ויוז
 // app.get('', (req, res) => {
 //   res.render('index')
@@ -26,13 +31,22 @@ app.set('views', path.join(__dirname, '../public/views'));
 app.get('', (req, res) => {
   // אקספרס מרנדרת את הקובץ לhtml
   res.render('index', {
-      title: "weather",
+      title: "Weather",
       name: "Stav Librowski"
     });
  })
 
 app.get('/about', (req, res) => {
-    res.render('about');
+    res.render('about', {
+      title: "About me",
+      name: "Stav Librowski"
+    });
+ })
+
+app.get('/help', (req, res) => {
+    res.render('help', {
+      message: "Hellooooooooo",
+    });
  })
 
 
