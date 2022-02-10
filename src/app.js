@@ -18,11 +18,26 @@ const publicDirectoryPath = path.join(__dirname, '../public')
 app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, '../public/views'));
 // שולחים עם רנדר את קובץ האינדקס שבתיקייה ויוז
+// app.get('', (req, res) => {
+//   res.render('index')
+//   })
+
+// אם רוצים להגדיר דינמית מה יהיה בדף
 app.get('', (req, res) => {
   // אקספרס מרנדרת את הקובץ לhtml
-  res.render('index')
-  })
+  res.render('index', {
+      title: "weather",
+      name: "Stav Librowski"
+    });
+ })
 
+app.get('/about', (req, res) => {
+    res.render('about');
+ })
+
+
+
+// ----------------------------------------------------------------------------
 //מה השרת צריך לעשות כשמבקשים משהו מיוארל מסוים
 //האם להחזיר הטמל או להחזיר גייסון
 //הפרמטר הראשון הוא הנתיב הספציפי והפרמטר השני הוא הפונקציה של מה עושים
