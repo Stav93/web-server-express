@@ -13,7 +13,9 @@ const app = express();
 //define path for Express config
 //המיקום ממנו נרצה לקבל את הדברים הסטטים, שלא משתנים
 const publicDirectoryPath = path.join(__dirname, '../public');
-const viewsPath = path.join(__dirname, '../public/templates');
+const viewsPath = path.join(__dirname, '../templates/views');
+const partialsPath = path.join(__dirname, '../templates/partials');
+
 
 // express.static() -- נותן את הפאט
 // Setup static directory to serve
@@ -23,6 +25,8 @@ app.use(express.static(publicDirectoryPath))
 // שמים באקספרס את החבילה שהורדנו
 app.set('view engine', 'hbs')
 app.set('views', viewsPath);
+// register partial לוקח את המיקום שבו הם נמצאים
+hbs.registerPartials(partialsPath);
 
 // שולחים עם רנדר את קובץ האינדקס שבתיקייה ויוז
 // app.get('', (req, res) => {
@@ -48,6 +52,9 @@ app.get('/about', (req, res) => {
 app.get('/help', (req, res) => {
     res.render('help', {
       message: "Hellooooooooo",
+      title: "header",
+      name: "Stav Librowski",
+      
     });
  })
 
