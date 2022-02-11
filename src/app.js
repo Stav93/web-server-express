@@ -19,6 +19,7 @@ const partialsPath = path.join(__dirname, '../templates/partials');
 
 // express.static() -- נותן את הפאט
 // Setup static directory to serve
+// מחפש קבצים בתיקיית פאבליק
 app.use(express.static(publicDirectoryPath))
 
 // Setup handlebars engine and views location
@@ -51,7 +52,7 @@ app.get('/about', (req, res) => {
 
 app.get('/help', (req, res) => {
     res.render('help', {
-      message: "Hellooooooooo",
+      message: "Hellooooooooo!",
       title: "header",
       name: "Stav Librowski",
       
