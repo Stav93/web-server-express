@@ -1,8 +1,46 @@
-h1 {
-  color: grey;
+body {
+  color: #333;
+  font-family:Arial, Helvetica, sans-serif;
+  max-width: 650px;
+  /* auto - ירווח באופן שווה בימין ושמאל */
+  margin: 0px auto;
+  padding: 0px 1rem;
+
+  display: flex;
+  flex-direction: column;
+  /* 100% view port height */
+  min-height: 100vh;
 }
 
-img {
-  width: 15rem;
-  /* width: 50%; */
+header {
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+
+header a {
+  color: #888;
+  margin-right: 1rem;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.portrat {
+  width: 50%;
+}
+
+.main-content {
+  /* הנחיה לקחת את כל הרווח שנשאר */
+  flex-grow: 1;
+}
+
+footer {
+  color: #888;
+  border-top: 1px solid #eee;
+  /* background-color: rgba(82, 23, 82, 0.333); */
+  margin-top: 1rem;
+  padding: 10px 0px;
 }

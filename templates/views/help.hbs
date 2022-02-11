@@ -4,13 +4,16 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/img/weather.png">
   <link rel="stylesheet" href="/css/styls.css">
-  <title>Help</title>
+  <title>Weather App - Help</title>
 </head>
 <body>
   {{!-- static header from header.hbs --}}
-  {{>header}}
-  <p>{{message}}</p>
+  <div class="main-content">
+    {{>header}}
+    <p>{{message}}</p>
+  </div>
   {{>footer}}
 </body>
 </html>
