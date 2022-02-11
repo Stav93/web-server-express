@@ -59,6 +59,24 @@ app.get('/help', (req, res) => {
     });
  })
 
+ app.get ("/help/*", (req, res) => {
+  // res.send("help article not found")
+  res.render("404", { 
+    title: "404",
+    name: "Stav Librowski",
+    errorMessage: "help article not found",
+  })
+})
+
+//  לכל העמודים שלא קיימים - כלומר, שלא צויינו למעלה
+app.get ("*", (req, res) => {
+  // res.send("404 error")
+  res.render("404", { 
+    title: "404",
+    name: "Stav Librowski",
+    errorMessage: "not found"
+  })
+})
 
 
 // ----------------------------------------------------------------------------
