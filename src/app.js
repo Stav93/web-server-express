@@ -1,6 +1,9 @@
 const path = require('path')
 const express = require('express')
-const hbs = require('hbs')
+const hbs = require('hbs');
+const { url } = require('inspector');
+const geocode = require('./utils/geocode.js');
+const forecast = require('./utils/forecast.js');
 
 // המיקום של הקובץ הנוכחי
 console.log(__dirname);
@@ -68,6 +71,45 @@ app.get('/help', (req, res) => {
   })
 })
 
+app.get("/weather",(req,res) => {
+  if (!req.query.address) {
+    return res.send({
+        error: 'You must provide an address'
+    })
+}
+  geocode(req.query.address, (error, {latitude, longitude, location} = {}) => {
+    if (error) {
+      return res.send({error});
+    }
+    forecast(latitude, longitude, (error, forcastData) => {
+      if (error) {
+        return res.send({error});
+      }
+      res.send(
+        {
+          address: req.query.address,
+          forcast: forcastData,
+          location: location
+        }
+      )
+    })
+  });
+});
+
+app.get('/products', (req, res) => {
+  // נבדוק אם יש פרמטר חיפוש ואם לא אז נעצור את הפונקציה על ידי הריטורן כדי שלא יישלח פעמיים לקליינט
+  if (!req.query.search) {
+      return res.send({
+          error: 'You must provide a search term'
+      })
+  }
+
+  console.log(req.query.search)
+  res.send({
+      products: []
+  })
+})
+
 //  לכל העמודים שלא קיימים - כלומר, שלא צויינו למעלה
 app.get ("*", (req, res) => {
   // res.send("404 error")
@@ -77,6 +119,16 @@ app.get ("*", (req, res) => {
     errorMessage: "not found"
   })
 })
+
+app.listen(3000, () => {
+  console.log("Port 3000")
+});
+
+
+
+
+
+
 
 
 // ----------------------------------------------------------------------------
@@ -107,18 +159,4 @@ app.get ("*", (req, res) => {
 // app.get("/about",(req,res) => {
 //   res.send("<h3>About Page!</h3>")
 // });
-
-app.get("/weather",(req,res) => {
-  res.send(
-    {
-      location: "Tel Aviv",
-      forcast: 10,
-    }
-  )
-});
-
-app.listen(3000, () => {
-  console.log("Port 3000")
-});
-
 
